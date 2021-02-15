@@ -1,30 +1,30 @@
 <?php
 
-$key = ''; // API KEY (ключ указанный на сайте liveopencart.ru в настройках автора)
+$key = ''; // API KEY (The key specified on LiveOpenCart.ru in the author's settings)
 
 include('liveopencart/api_msg.php');
 
 $api_msg = new liveopencart\api_msg($key);
-$data = $api_msg->getDecodedDataFromPost(); // получаем данные запроса
+$data = $api_msg->getDecodedDataFromPost(); // We receive the request data
 
 if ( $data ) {
 	$answer = 'OK';
 	
-	// выполням все необходимые манипуляции (сохраняем информацию о заказе, генерируем ключи и т.п.)
+	// Perform all the necessary manipulations (we save the order information, generate keys, etc.)
 	
-	//$data->marketplace	//Идентификатор торговой площадки - liveopencart
-	//$data->order_id		//Номер заказа
-	//$data->order_status	//Статус заказа (текст)
-	//$data->username		//Имя покупателя
-	//$data->email			//email покупателя
-	//$data->member_id		//id покупателя на торговой площадке
-	//$data->date_added		//Дата покупки
-	//$data->extension_id	//ID товара в торговой площадке
-	//$data->extension		//Название дополнения
-	//$data->quantity		//Количество
-	//$data->total			//Доход без учета комиссии
-	//$data->domain 		//Домен где будет установлено дополнение
-	//$data->test_domain 	//Тестовый домен на этап разработки сайта 
+	//$data->marketplace	//Trading platform identifier - LiveOpenCart
+	//$data->order_id		//Order number
+	//$data->order_status	//Order status (text)
+	//$data->username		//Buyer name
+	//$data->email			//Email buyer
+	//$data->member_id		//Buyer ID on the trading platform
+	//$data->date_added		//Data purchases
+	//$data->extension_id	//Product ID in the shopping area
+	//$data->extension		//Name add-on
+	//$data->quantity		//amount
+	//$data->total			//Income excluding commission
+	//$data->domain 		//Domain where supplement will be installed
+	//$data->test_domain 	//Test domain on the site development phase
 	
 } elseif ( $data === false ) {
 	$answer = 'Wrong hash';
@@ -32,10 +32,10 @@ if ( $data ) {
 	$answer = 'Wrong request';
 }
 
-echo $api_msg->generateEncodedMsg($answer); // возвращаем ответ
+echo $api_msg->generateEncodedMsg($answer); // Return the answer
 
 
-// пример возможного сохранения статистики запросов API
+// An example of a possible saving API request statistics
 //$log_file = 'api_client.txt';
 //$f = fopen($log_file, 'a+');
 //fwrite($f, '============== '.date('Y-m-d G:i:s').' =============='."\n");
@@ -43,5 +43,3 @@ echo $api_msg->generateEncodedMsg($answer); // возвращаем ответ
 //fwrite($f, print_r($data, true)."\n");
 //fwrite($f, $answer."\n");
 //fclose($f);
-
-
