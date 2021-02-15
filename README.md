@@ -1,2 +1,1 @@
-
-Пример использования библиотеки: example.php
+Library Use Example: Example.php
